@@ -39,7 +39,7 @@
                             <a href="{[ route('servicio.edit', ['servicio' => $servicio->id_conductor]) ]}" class="btn btn-info">
                                 Editar </a></li>
 
-                            <form action="{[ route('servicio.destroy', ['servicio' => $servicio->id_conductor]) ]}"
+                            <form action="{{ route('servicio.destroy', ['servicio'=>$servicio->id_servicio]) }}"
                                 method='POST' style="display: inline-block">
                                 @method('delete')
                                 @csrf

@@ -102,6 +102,14 @@ class ServicioController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $servicio = servicio::find($id);
+        $servicio->delete();
+
+        $servicios = DB::table('tb-servicio')
+        ->join('tb-conductor', 'tb-servicio.id_conductor', '=', 'tb-conductor.id_conductor')
+        ->select('tb-servicio.*',"tb-conductor.Nomb_conductor")
+        ->get();
+        return view('servicio.index', ['servicios' => $servicios]);
+
     }
 }
