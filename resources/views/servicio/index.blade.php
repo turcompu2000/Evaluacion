@@ -16,7 +16,6 @@
 <body>
     <div class="container">
         <h1>LISTADO DE SERVICIOS DE TRANSPORTE</h1>
-        <a href="{[ route('servicio.create') ]}" class="btn btn-success">Añadir</a>
         <table class="table">
             <thead>
                 <tr>
@@ -30,20 +29,23 @@
             <tbody>
                 @foreach ($servicios as $servicio)
                     <tr>
-                        <th scope="row">{{ $servicio->ID }}</th>
+                        <th scope="row">{{ $servicio->id_servicio }}</th>
                         <td>{{ $servicio->Fecha }}</td>
-                        <td>{{ $servicio->Conductor}}</td>
-                        <td>{{ $servicio->Cliente}}</td>
+                        <td>{{ $servicio->Nomb_conductor}}</td>
+                        <td>{{ $servicio->cliente}}</td>
                         <td>
-                            <a href="{[ route('comunas.edit', ['comuna' => $comuna->comu_codi]) ]}" class="btn btn-info">
+                            <a href="{{ route('servicio.create') }}" class="btn btn-success">Añadir</a>
+
+                            <a href="{[ route('servicio.edit', ['servicio' => $servicio->id_conductor]) ]}" class="btn btn-info">
                                 Editar </a></li>
 
-                            <form action="{[ route('comunas.destroy', ['comuna' => $comuna->comu_codi]) ]}"
+                            <form action="{[ route('servicio.destroy', ['servicio' => $servicio->id_conductor]) ]}"
                                 method='POST' style="display: inline-block">
                                 @method('delete')
                                 @csrf
                                 <input class="btn btn-danger" type="submit" value="Eliminar">
                             </form>
+
                         </td>
                     </tr>
                 @endforeach
