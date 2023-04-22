@@ -9,7 +9,7 @@ class servicio extends Model
 {
     use HasFactory;
     protected $table = 'tb-servicio';
-    protected $primaryKey = 'ID';
+    protected $primaryKey = 'id';
     protected $timestamps = 'false';
 
 }
