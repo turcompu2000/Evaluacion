@@ -31,6 +31,9 @@ Route::middleware('auth')->group(function () {
 
 Route::middleware('auth')->group(function () {
     Route::get('/servicio', [ServicioController::class, 'index'])->name('servicio.index');
+    Route::post('/servicio', [ServicioController::class, 'store'])->name('servicio.store');
+    Route::get('/servicio/create', [ServicioController::class, 'create'])->name('servicio.create');
+
 
 });
 

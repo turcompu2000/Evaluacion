@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\servicio;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+
 
 class ServicioController extends Controller
 {
@@ -13,8 +15,11 @@ class ServicioController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
-        $servicios = servicio::all();
+    {        
+        $servicios = DB::table('tb-servicio')
+        ->join('tb-conductor', 'tb-servicio.id_conductor', '=', 'tb-conductor.id_conductor')
+        ->select('tb-servicio.*',"tb-conductor.Nomb_conductor")
+        ->get();
         return view('servicio.index', ['servicios' => $servicios]);
     }
 
@@ -25,7 +30,11 @@ class ServicioController extends Controller
      */
     public function create()
     {
-        //
+        $servicios = DB::table('tb-conductor')
+        ->orderBy('Nomb_conductor')
+        ->get();
+        return view('servicio.add', ['servicios' => $servicios]);
+
     }
 
     /**
@@ -36,7 +45,19 @@ class ServicioController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $servicio = new servicio();       
+        $servicio->Fecha=$request->date;
+        $servicio->id_conductor=$request->code;
+        $servicio->cliente=$request->name;
+        $servicio->save();
+
+       $servicios = DB::table('tb-servicio')
+       ->join('tb-conductor', 'tb-servicio.id_conductor', '=', 'tb-conductor.id_conductor')
+       ->select('tb-servicio.*',"tb-conductor.Nomb_conductor")
+       ->get();
+      
+       return view('servicio.index', ['servicios' => $servicios]);
+
     }
 
     /**

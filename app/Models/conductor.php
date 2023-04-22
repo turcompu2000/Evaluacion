@@ -9,6 +9,6 @@ class conductor extends Model
 {
     use HasFactory;
     protected $table = 'tb-conductor';
-    protected $primaryKey = 'id';
+    protected $primaryKey = 'id_conductor';
     public $timestamps = 'false';
 }

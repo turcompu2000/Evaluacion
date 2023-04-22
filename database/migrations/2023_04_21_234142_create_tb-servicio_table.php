@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('tb-servicio', function (Blueprint $table) {
             $table->id();
             $table->date('Fecha');
-            $table->string('conductor');
+            $table->interger('id_conductor');
             $table->string('cliente');
             $table->timestamps();
     });
