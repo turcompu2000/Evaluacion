@@ -10,5 +10,5 @@ class conductor extends Model
     use HasFactory;
     protected $table = 'tb-conductor';
     protected $primaryKey = 'id';
-    protected $timestamps = 'false';
+    public $timestamps = 'false';
 }
