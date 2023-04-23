@@ -79,7 +79,12 @@ class ServicioController extends Controller
      */
     public function edit($id)
     {
-        //
+        $servicio = servicio::find($id);
+        $servicios = DB::table('tb-conductor')
+            ->orderBy('Nomb_conductor')
+            ->get();
+        return view('servicio.edit', ['servicio' => $servicio , 'servicios' => $servicios]);
+        
     }
 
     /**
@@ -91,7 +96,18 @@ class ServicioController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $servicio = new servicio();       
+        $servicio->Fecha=$request->date;
+        $servicio->id_conductor=$request->code;
+        $servicio->cliente=$request->name;
+        $servicio->save();
+
+        $servicios = DB::table('tb-servicio')
+        ->join('tb-conductor', 'tb-servicio.id_conductor', '=', 'tb-conductor.id_conductor')
+        ->select('tb-servicio.*',"tb-conductor.Nomb_conductor")
+        ->get();
+
+        return view('servicio.index', ['servicios' => $servicios]);
     }
 
     /**

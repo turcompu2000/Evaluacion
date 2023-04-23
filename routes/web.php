@@ -34,7 +34,8 @@ Route::middleware('auth')->group(function () {
     Route::post('/servicio', [ServicioController::class, 'store'])->name('servicio.store');
     Route::get('/servicio/create', [ServicioController::class, 'create'])->name('servicio.create');
     Route::delete('/servicio/{servicio}', [ServicioController::class, 'destroy'])->name('servicio.destroy');
-
+    Route::put('/servicio/{servicio}', [ServicioController::class, 'update'])->name('servicio.update');
+    Route::get('/servicio/{servicio}/edit', [ServicioController::class, 'edit'])->name('servicio.edit');
 
 
 });

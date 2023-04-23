@@ -36,10 +36,10 @@
                         <td>
                             <a href="{{ route('servicio.create') }}" class="btn btn-success">Añadir</a>
 
-                            <a href="{[ route('servicio.edit', ['servicio' => $servicio->id_conductor]) ]}" class="btn btn-info">
+                            <a href="{{ route('servicio.edit', ['servicio' => $servicio->id_servicio]) }}" class="btn btn-info">
                                 Editar </a></li>
 
-                            <form action="{{ route('servicio.destroy', ['servicio'=>$servicio->id_servicio]) }}"
+                            <form action="{{ route('servicio.destroy',['servicio'=>$servicio->id_conductor]) }}"
                                 method='POST' style="display: inline-block">
                                 @method('delete')
                                 @csrf
